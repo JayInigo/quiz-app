@@ -8,7 +8,7 @@ void main() {
 
 // Root widget of the application
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class _QuizWidgetState extends State<QuizWidget> with SingleTickerProviderStateM
       'explanation': 'A digital queue number system helps manage crowds by letting customers see their position in line and estimated wait time on their phones, reducing congestion at the counter.',
     },
     {
-      'question': "What mobile app feature would most benefit Mercury Drug stores in Quezon City?",
+      'question': "What mobile app feature would most benefit Mercury Drug stores in Naga City?",
       'answers': [
         'Prescription refill reminders and online ordering',
         'Medicine inventory checker across branches',
@@ -73,7 +73,7 @@ class _QuizWidgetState extends State<QuizWidget> with SingleTickerProviderStateM
       'explanation': 'An inventory checker lets customers find out which branch has their needed medicine in stock before traveling, saving time and effort.',
     },
     {
-      'question': 'Which feature would help Tropical Hut Hamburger in Cubao, Quezon City improve their service?',
+      'question': 'Which feature would help Tropical Hut Hamburger in Cubao, Naga City improve their service?',
       'answers': [
         'Loyalty points and digital stamp card',
         'Advance ordering for takeout/delivery',
@@ -84,7 +84,7 @@ class _QuizWidgetState extends State<QuizWidget> with SingleTickerProviderStateM
       'explanation': 'Advance ordering allows customers to place orders ahead of time and pick up their food ready, reducing wait time during busy hours.',
     },
     {
-      'question': 'What would help barangay health centers in Quezon City serve residents better?',
+      'question': 'What would help barangay health centers in Naga City serve residents better?',
       'answers': [
         'Vaccination appointment scheduling',
         'Health record access and document requests',
@@ -95,7 +95,7 @@ class _QuizWidgetState extends State<QuizWidget> with SingleTickerProviderStateM
       'explanation': 'An appointment scheduling system prevents long queues and overcrowding by organizing vaccination schedules, especially important during health campaigns.',
     },
     {
-      'question': 'Which feature would benefit LBC Express branches in Quezon City the most?',
+      'question': 'Which feature would benefit LBC Express branches in Naga City the most?',
       'answers': [
         'Real-time package tracking with GPS',
         'Pickup request scheduling from home',
@@ -252,10 +252,10 @@ class StartView extends StatefulWidget {
   final int totalQuestions; // Total number of questions in the quiz
 
   const StartView({
-    Key? key,
+    super.key,
     required this.onStart,
     required this.totalQuestions,
-  }) : super(key: key);
+  });
 
   @override
   State<StartView> createState() => _StartViewState();
@@ -303,17 +303,17 @@ class _StartViewState extends State<StartView> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0xFF5DD9E8).withOpacity(0.7), // Bright Aqua glow
+                      color: Color(0xFF5DD9E8).withValues(alpha: 0.7), // Bright Aqua glow
                       blurRadius: 30,
                       spreadRadius: 10,
                     ),
                     BoxShadow(
-                      color: Color(0xFF9FE8F0).withOpacity(0.5), // Light Cyan accent
+                      color: Color(0xFF9FE8F0).withValues(alpha: 0.5), // Light Cyan accent
                       blurRadius: 40,
                       spreadRadius: 5,
                     ),
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withValues(alpha: 0.2),
                       blurRadius: 20,
                       spreadRadius: 2,
                     ),
@@ -329,17 +329,17 @@ class _StartViewState extends State<StartView> {
                       letterSpacing: 1,
                       shadows: [
                         Shadow(
-                          color: Color(0xFF5DD9E8).withOpacity(0.8),
+                          color: Color(0xFF5DD9E8).withValues(alpha: 0.8),
                           blurRadius: 20,
                           offset: Offset(0, 0),
                         ),
                         Shadow(
-                          color: Color(0xFF9FE8F0).withOpacity(0.6),
+                          color: Color(0xFF9FE8F0).withValues(alpha: 0.6),
                           blurRadius: 30,
                           offset: Offset(0, 0),
                         ),
                         Shadow(
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                           blurRadius: 10,
                           offset: Offset(0, 0),
                         ),
@@ -354,7 +354,7 @@ class _StartViewState extends State<StartView> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Text(
@@ -489,7 +489,7 @@ class QuizView extends StatelessWidget {
   final VoidCallback onNext; // Callback for next button
 
   const QuizView({
-    Key? key,
+    super.key,
     required this.currentQuestion,
     required this.currentIndex,
     required this.totalQuestions,
@@ -499,11 +499,11 @@ class QuizView extends StatelessWidget {
     required this.fadeAnimation,
     required this.onAnswerSelected,
     required this.onNext,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return FadeTransition( // Wraps content with fade animation
+    return FadeTransition(
       opacity: fadeAnimation,
       child: Column(
         children: [
@@ -555,11 +555,11 @@ class QuizHeader extends StatelessWidget {
   final int score; // Current score
 
   const QuizHeader({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.totalQuestions,
     required this.score,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -583,7 +583,7 @@ class QuizHeader extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
               value: (currentIndex + 1) / totalQuestions, // Progress percentage
-              backgroundColor: Colors.white.withOpacity(0.3),
+              backgroundColor: Colors.white.withValues(alpha: 0.3),
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.amber),
               minHeight: 10,
             ),
@@ -598,12 +598,10 @@ class QuizHeader extends StatelessWidget {
 class _InfoChip extends StatelessWidget {
   final IconData icon; // Icon to display
   final String text; // Text to display
-  final Color? iconColor; // Optional custom icon color
 
   const _InfoChip({
     required this.icon,
     required this.text,
-    this.iconColor,
   });
 
   @override
@@ -611,11 +609,11 @@ class _InfoChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.25),
+        color: Colors.white.withValues(alpha: 0.25),
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 8,
           ),
         ],
@@ -623,7 +621,7 @@ class _InfoChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: iconColor ?? Colors.white, size: 20),
+          Icon(icon, color: Colors.white, size: 20),
           const SizedBox(width: 8),
           Text(
             text,
@@ -651,7 +649,7 @@ class QuestionCard extends StatelessWidget {
   final Function(int) onAnswerSelected; // Callback for answer selection
 
   const QuestionCard({
-    Key? key,
+    super.key,
     required this.question,
     required this.answers,
     required this.correctAnswer,
@@ -659,7 +657,7 @@ class QuestionCard extends StatelessWidget {
     required this.selectedAnswerIndex,
     required this.answerSelected,
     required this.onAnswerSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -670,7 +668,7 @@ class QuestionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: Colors.black.withValues(alpha: 0.15),
             blurRadius: 25,
             offset: const Offset(0, 10),
           ),
@@ -719,19 +717,19 @@ class AnswerOption extends StatelessWidget {
   final VoidCallback onTap; // Callback when tapped
 
   const AnswerOption({
-    Key? key,
+    super.key,
     required this.index,
     required this.answer,
     required this.isCorrect,
     required this.isSelected,
     required this.answerSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   // Determines background color based on selection state
   Color _getBackgroundColor() {
     if (isSelected) {
-      return Color(0xFF88C5CC).withOpacity(0.3); // Light teal
+      return Color(0xFF88C5CC).withValues(alpha: 0.3); // Light teal
     }
     return Colors.grey.shade100; // Default background
   }
@@ -810,7 +808,7 @@ class _OptionCircle extends StatelessWidget {
       height: 36,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isSelected ? Color(0xFF1A5F6B) : Color(0xFF88C5CC).withOpacity(0.4), // Dark teal / Light teal
+        color: isSelected ? Color(0xFF1A5F6B) : Color(0xFF88C5CC).withValues(alpha: 0.4), // Dark teal / Light teal
       ),
       child: Center(
         child: Text(
@@ -831,7 +829,7 @@ class _OptionCircle extends StatelessWidget {
 class ExplanationBox extends StatelessWidget {
   final String explanation; // Explanation text
 
-  const ExplanationBox({Key? key, required this.explanation}) : super(key: key);
+  const ExplanationBox({super.key, required this.explanation});
 
   @override
   Widget build(BuildContext context) {
@@ -871,10 +869,10 @@ class NextButton extends StatelessWidget {
   final bool isLastQuestion; // Whether this is the last question
 
   const NextButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.isLastQuestion,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -914,13 +912,13 @@ class EndView extends StatelessWidget {
   final VoidCallback onRestart; // Callback to restart quiz
 
   const EndView({
-    Key? key,
+    super.key,
     required this.score,
     required this.totalQuestions,
     required this.username,
     required this.userAnswers,
     required this.onRestart,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -993,7 +991,7 @@ class EndView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.15),
+                        color: Colors.black.withValues(alpha: 0.15),
                         blurRadius: 25,
                         offset: const Offset(0, 10),
                       ),
@@ -1042,13 +1040,13 @@ class EndView extends StatelessWidget {
   // Determines emoji and message based on score percentage
   Map<String, String> _getResultData(int percentage) {
     if (percentage >= 80) {
-      return {'emoji': '🎉', 'message': 'Excellent!'};
+      return {'emoji': '🏆', 'message': 'Excellent!'};
     } else if (percentage >= 60) {
-      return {'emoji': '😊', 'message': 'Good Job!'};
+      return {'emoji': '🥈', 'message': 'Good Job!'};
     } else if (percentage >= 40) {
-      return {'emoji': '😐', 'message': 'Not Bad!'};
+      return {'emoji': '🥉', 'message': 'Not Bad!'};
     }
-    return {'emoji': '😔', 'message': 'Keep Trying!'};
+    return {'emoji': '🏅', 'message': 'Keep Trying!'};
   }
 }
 
@@ -1060,11 +1058,11 @@ class PerformanceInsights extends StatelessWidget {
   final int percentage;
 
   const PerformanceInsights({
-    Key? key,
+    super.key,
     required this.score,
     required this.totalQuestions,
     required this.percentage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1077,7 +1075,7 @@ class PerformanceInsights extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: Colors.black.withValues(alpha: 0.15),
             blurRadius: 25,
             offset: const Offset(0, 10),
           ),
@@ -1194,10 +1192,10 @@ class QuestionReviewCard extends StatelessWidget {
   final Map<String, dynamic> questionData;
 
   const QuestionReviewCard({
-    Key? key,
+    super.key,
     required this.questionNumber,
     required this.questionData,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1389,11 +1387,11 @@ class ScoreCard extends StatelessWidget {
   final int percentage; // Score percentage
 
   const ScoreCard({
-    Key? key,
+    super.key,
     required this.score,
     required this.totalQuestions,
     required this.percentage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1404,7 +1402,7 @@ class ScoreCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withValues(alpha: 0.2),
             blurRadius: 25,
             offset: const Offset(0, 10),
           ),
@@ -1454,7 +1452,7 @@ class ScoreCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 10),
             decoration: BoxDecoration(
-              color: Color(0xFF88C5CC).withOpacity(0.3), // Light teal background
+              color: Color(0xFF88C5CC).withValues(alpha: 0.3), // Light teal background
               borderRadius: BorderRadius.circular(25),
             ),
             child: Text(
@@ -1477,7 +1475,7 @@ class ScoreCard extends StatelessWidget {
 class RestartButton extends StatelessWidget {
   final VoidCallback onPressed; // Callback when pressed
 
-  const RestartButton({Key? key, required this.onPressed}) : super(key: key);
+  const RestartButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
